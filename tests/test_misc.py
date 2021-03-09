@@ -11,7 +11,7 @@ def test_version_exists():
 
 
 def test_version_valid():
-    assert re.match(r"[0-9]+\.[0-9]+(\.[0-9]+)?(dev)?$",
+    assert re.match(r"[0-9]+\.[0-9]+(\.[0-9]+)?(dev)?[0-9]?$",
                     pytest_order.__version__)
 
 
