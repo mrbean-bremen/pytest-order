@@ -5,6 +5,7 @@ import pytest_order
 
 
 def test_xdist_ordering(tmpdir):
+    print(f"{tmpdir=}")
     testname = str(tmpdir.join("first_test.py"))
     with open(testname, "w") as fi:
         fi.write(
@@ -59,11 +60,11 @@ def test_xdist_ordering(tmpdir):
             )
         )
     # With `loadfile`, the tests should pass
-    args = ["-n3", "--dist=loadfile", str(tmpdir)]
+    args = ["-n3", "-v", "--dist=loadfile", str(tmpdir)]
     ret = pytest.main(args, [pytest_order])
     assert ret == 0
 
     # Without `loadfile`, the tests should fail
-    args = ["-n3", str(tmpdir)]
+    args = ["-n3", "-v", str(tmpdir)]
     ret = pytest.main(args, [pytest_order])
     assert ret == 1
